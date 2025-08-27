@@ -3,7 +3,7 @@ name: Angular CI/CD to Azure
 on:
   push:
     branches:
-      - main
+      - main   # Trigger on main branch push
 
 jobs:
   build-and-deploy:
@@ -23,12 +23,12 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-        working-directory: ./angular14   # 👈 go inside Angular project folder
+        working-directory: ./Angular14   # 👈 go inside Angular project folder
 
       # Step 4: Build Angular app
       - name: Build Angular
         run: npm run build --prod
-        working-directory: ./angular14   # 👈 same here
+        working-directory: ./Angular14   # 👈 same here
 
       # Step 5: Deploy to Azure WebApp
       - name: Deploy to Azure WebApp
@@ -36,4 +36,4 @@ jobs:
         with:
           app-name: "indrajithfirstazureapp"
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./angular14/dist/angular14   # 👈 update correct dist path
+          package: ./Angular14/dist/Angular14   # 👈 built files path
